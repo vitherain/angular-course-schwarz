@@ -11,3 +11,16 @@
     </div>
   </div>
 </div>
+
+
+<button class="btn btn-primary" (click)="toggleDisplaySecretPassword()">Display Details</button>
+
+<p *ngIf="displaySecretPassword">Secret Password = tuna</p>
+
+<div class="row">
+  <ul>
+    <li *ngFor="let click of clicks" [ngStyle]="{ backgroundColor: click.id >= 5 ? 'blue' : 'transparent' }" [ngClass]="{ whiteText: click.id >= 5 }">
+      Click #{{ click.id }} at {{ click.timestamp }}
+    </li>
+  </ul>
+</div>
