@@ -10,7 +10,9 @@ import {
   AfterContentChecked,
   AfterViewInit,
   AfterViewChecked,
-  OnDestroy
+  OnDestroy,
+  ViewChild,
+  ElementRef
 } from '@angular/core';
 
 @Component({
@@ -28,26 +30,28 @@ export class ServerElementComponent
     content: string
   };
   @Input() name: string;
+  @ViewChild('heading') header: ElementRef;
 
   constructor() {
-    console.log('constructor called!')
+    console.log('constructor called!');
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log('ngOnChanges called!')
+    console.log('ngOnChanges called!');
     console.log(changes);
   }
 
   ngOnInit() {
-    console.log('ngOnInit called!')
+    console.log('ngOnInit called!');
+    console.log('Text content: ', this.header.nativeElement.textContent);
   }
 
   ngDoCheck():void {
-    console.log('doCheck called!')
+    console.log('doCheck called!');
   }
 
   ngAfterContentInit():void {
-    console.log('ngAfterContentInit called!')
+    console.log('ngAfterContentInit called!');
   }
 
   ngAfterContentChecked():void {
@@ -55,14 +59,15 @@ export class ServerElementComponent
   }
 
   ngAfterViewInit():void {
-    console.log('ngAfterViewInit called!')
+    console.log('ngAfterViewInit called!');
+    console.log('Text content: ', this.header.nativeElement.textContent);
   }
 
   ngAfterViewChecked():void {
-    console.log('ngAfterViewChecked called!')
+    console.log('ngAfterViewChecked called!');
   }
 
   ngOnDestroy():void {
-    console.log('ngOnDestroy called!')
+    console.log('ngOnDestroy called!');
   }
 }
