@@ -14,10 +14,11 @@ export class AppComponent {
   toggleDisplaySecretPassword() {
     this.displaySecretPassword = !this.displaySecretPassword;
     this.clicks.push(
-      {
-        id: ++this.clicksCounter,
-        timestamp: new Date()
-      }
+    //  {
+    //    id: ++this.clicksCounter,
+    //    timestamp: new Date()
+    //  }
+      new Date()
     );
   }
 }
