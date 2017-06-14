@@ -12,7 +12,7 @@ export class AppComponent {
 
   onNumberGenerated(event): void {
     console.log('event.num is:', event.num);
-    if (event.num % 2 == 0) {
+    if (event.num % 2 === 0) {
       this.evenIndexes.push(event.num);
     } else {
       this.oddIndexes.push(event.num);

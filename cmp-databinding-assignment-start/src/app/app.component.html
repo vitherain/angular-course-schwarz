@@ -19,8 +19,8 @@
 <app-game-control (numberGenerated)="onNumberGenerated($event)"></app-game-control>
 
 <div class="col-xs-6">
-  <app-even *ngFor="let idx of evenIndexes"></app-even>
+  <app-even *ngFor="let num of evenIndexes" [number]="num"></app-even>
 </div>
 <div class="col-xs-6">
-  <app-odd *ngFor="let idx of oddIndexes"></app-odd>
+  <app-odd *ngFor="let num of oddIndexes" [number]="num"></app-odd>
 </div>
