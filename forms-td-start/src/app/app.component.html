@@ -5,6 +5,7 @@
         <div id="user-data">
           <div class="form-group">
             <label for="username">Username</label>
+            <!-- No binding -->
             <input type="text" id="username" class="form-control" ngModel name="username" required>
           </div>
           <button class="btn btn-default" type="button">Suggest an Username</button>
@@ -16,11 +17,17 @@
         </div>
         <div class="form-group">
           <label for="secret">Secret Questions</label>
-          <select id="secret" class="form-control" ngModel name="secret">
+          <!-- One way binding (default value) -->
+          <select id="secret" class="form-control" [ngModel]="defaultQuestion" name="secret">
             <option value="pet">Your first Pet?</option>
             <option value="teacher">Your first teacher?</option>
           </select>
         </div>
+        <div class="form-group">
+          <!-- Two way binding -->
+          <textarea name="questionAnswer" rows="3" [(ngModel)]="answer" class="form-control"></textarea>
+        </div>
+        <p>Your reply: {{ answer }}</p>
         <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit</button>
       </form>
     </div>
