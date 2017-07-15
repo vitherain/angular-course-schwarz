@@ -1,6 +1,50 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+          <label for="projectName">Project name:</label>
+          <input type="text" class="form-control" id="projectName" formControlName="projectName">
+        </div>
+        <span
+          class="help-block"
+          *ngIf="projectForm.get('projectName').status === 'PENDING'">
+          Wait a second!
+        </span>
+
+        <span
+          class="help-block"
+          *ngIf="!projectForm.get('projectName').valid && projectForm.get('projectName').touched && projectForm.get('projectName').errors">
+
+          <span *ngIf="projectForm.get('projectName').errors['invalidProjectName']">This project name is not allowed!</span>
+          <span *ngIf="projectForm.get('projectName').errors['required']">Project name is required!</span>
+          <span *ngIf="projectForm.get('projectName').errors['asyncInvalidProjectName']">This project name is also not allowed!</span>
+        </span>
+
+        <div class="form-group">
+          <label for="email">E-mail:</label>
+          <input type="text" class="form-control" id="email" formControlName="email">
+        </div>
+        <span
+          class="help-block"
+          *ngIf="!projectForm.get('email').valid && projectForm.get('email').touched">
+
+          <span *ngIf="projectForm.get('email').errors['required']">E-mail is required!</span>
+          <span *ngIf="projectForm.get('email').errors['email']">Invalid e-mail!</span>
+        </span>
+
+        <div class="form-group">
+          <label for="projectStatus">Project status:</label>
+          <select class="form-control" id="projectStatus" formControlName="projectStatus">
+            <option *ngFor="let opt of statuses" [value]="opt.value">
+              {{ opt.text }}
+            </option>
+          </select>
+        </div>
+
+        <button class="btn btn-primary">Submit</button>
+      </form>
       <!--
           Create a Form with the following Controls and Validators
           1) Project Name (should not be empty)
