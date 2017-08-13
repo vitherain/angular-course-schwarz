@@ -47,7 +47,7 @@ export class AppComponent {
         (servers: any[]) => {
           this.servers = servers;
         },
-        (error) => console.log(error)
+        (error) => console.log('Error vole ' + error)
       );
   }
 }
