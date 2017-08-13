@@ -9,6 +9,8 @@ import { ServerService } from "./server.service";
 })
 export class AppComponent {
 
+  appName = this.serverService.getAppName();
+
   constructor(private serverService: ServerService) {}
 
   servers = [
