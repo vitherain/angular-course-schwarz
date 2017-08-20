@@ -18,4 +18,8 @@ export class HeaderComponent {
         }
       );
   }
+
+  onFetchData() {
+    this.dsService.getRecipes();
+  }
 }
