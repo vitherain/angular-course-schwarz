@@ -22,6 +22,28 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
         ...state,
         ingredients: [...state.ingredients, ...<Ingredient[]>action.payload]
       };
+    case ShoppingListActions.UPDATE_INGREDIENT:
+      const ingredient = state.ingredients[(<{index: number, ingredient: Ingredient}>action.payload).index];
+      const updatedIngredient = {
+        ...ingredient,
+        ...(<{index: number, ingredient: Ingredient}>action.payload).ingredient
+      };
+
+      const ingredients = [...state.ingredients];
+      ingredients[(<{index: number, ingredient: Ingredient}>action.payload).index] = updatedIngredient;
+
+      return {
+        ...state,
+        ingredients: ingredients
+      };
+    case ShoppingListActions.DELETE_INGREDIENT:
+      const oldIngredients = [...state.ingredients];
+      oldIngredients.splice(<number>action.payload, 1);
+
+      return {
+        ...state,
+        oldIngredients
+      };
     default:
       return state;
   }
