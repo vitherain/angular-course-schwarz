@@ -4,19 +4,10 @@ import { Subject } from 'rxjs/Subject';
 export class ShoppingListService {
   ingredientsChanged = new Subject<Ingredient[]>();
   startedEditing = new Subject<number>();
-  private ingredients: Ingredient[] = [];
-
-  getIngredients() {
-    return this.ingredients.slice();
-  }
+  private ingredients: Ingredient[] =  [];
 
   getIngredient(index: number) {
     return this.ingredients[index];
-  }
-
-  addIngredient(ingredient: Ingredient) {
-    this.ingredients.push(ingredient);
-    this.ingredientsChanged.next(this.ingredients.slice());
   }
 
   addIngredients(ingredients: Ingredient[]) {
