@@ -26,22 +26,22 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
     case ShoppingListActions.ADD_INGREDIENT:
       return {
         ...state,
-        ingredients: [...state.ingredients, action.payload]
+        ingredients: [...state.ingredients, (<ShoppingListActions.AddIngredient>action).payload]
       };
     case ShoppingListActions.ADD_INGREDIENTS:
       return {
         ...state,
-        ingredients: [...state.ingredients, ...<Ingredient[]>action.payload]
+        ingredients: [...state.ingredients, ...(<ShoppingListActions.AddIngredients>action).payload]
       };
     case ShoppingListActions.UPDATE_INGREDIENT:
-      const ingredient = state.ingredients[(<{index: number, ingredient: Ingredient}>action.payload).index];
+      const ingredient = state.ingredients[state.editedIngredientIndex];
       const updatedIngredient = {
         ...ingredient,
-        ...(<{index: number, ingredient: Ingredient}>action.payload).ingredient
+        ...((<ShoppingListActions.UpdateIngredient>action).payload).ingredient
       };
 
       const ingredients = [...state.ingredients];
-      ingredients[(<{index: number, ingredient: Ingredient}>action.payload).index] = updatedIngredient;
+      ingredients[state.editedIngredientIndex] = updatedIngredient;
 
       return {
         ...state,
@@ -49,11 +49,18 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
       };
     case ShoppingListActions.DELETE_INGREDIENT:
       const oldIngredients = [...state.ingredients];
-      oldIngredients.splice(<number>action.payload, 1);
+      oldIngredients.splice(state.editedIngredientIndex, 1);
 
       return {
         ...state,
         oldIngredients
+      };
+    case ShoppingListActions.START_EDIT:
+      const editedIngredient = {...state.ingredients[(<ShoppingListActions.StartEdit>action).payload]}
+      return {
+        ...state,
+        editedIngredient: editedIngredient,
+        editedIngredientIndex: (<ShoppingListActions.StartEdit>action).payload
       };
     default:
       return state;
