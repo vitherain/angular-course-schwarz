@@ -13,7 +13,7 @@ export class RecipeEffects {
     recipeFetch = this.actions$
         .ofType(RecipeActions.FETCH_RECIPES)
         .switchMap((action: RecipeActions.FetchRecipes) => {
-            this.httpClient.get<Recipe[]>('https://ng-recipe-book-3adbb.firebaseio.com/recipes.json', {
+            return this.httpClient.get<Recipe[]>('https://ng-recipe-book-3adbb.firebaseio.com/recipes.json', {
                 observe: 'body',
                 responseType: 'json'
               })
