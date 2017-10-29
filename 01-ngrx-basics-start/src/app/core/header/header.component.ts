@@ -9,6 +9,8 @@ import { Observable } from 'rxjs/Observable';
 
 import * as AuthActions from '../../auth/store/auth.actions';
 
+import * as RecipeActions from '../../recipes/store/recipe.actions';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html'
@@ -33,7 +35,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onFetchData() {
-    this.dataStorageService.getRecipes();
+    this.store.dispatch(new RecipeActions.FetchRecipes());
   }
 
   onLogout() {
