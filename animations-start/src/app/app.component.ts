@@ -24,4 +24,7 @@ import {
 export class AppComponent {
   state = 'normal';
 
+  onAnimate() {
+    this.state === 'normal' ? this.state = 'highlighted' : this.state = 'normal';
+  }
 }
