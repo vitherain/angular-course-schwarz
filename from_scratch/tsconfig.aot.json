@@ -1,7 +1,6 @@
 {
     "compilerOptions": {
         "module": "es2015",
-        "outDir": "./dist",
         "moduleResolution": "node",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
